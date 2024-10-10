@@ -50,3 +50,4 @@ Things you may want to cover:
 ## application
 
 1. bundle exec rails generate model User identification:string password:string
+1. bundle exec rails db:migrate
