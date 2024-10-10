@@ -51,3 +51,4 @@ Things you may want to cover:
 
 1. bundle exec rails generate model User identification:string password:string
 1. bundle exec rails db:migrate
+1. bundle exec rails db:seed
