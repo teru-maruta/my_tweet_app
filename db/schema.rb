@@ -12,9 +12,10 @@
 
 ActiveRecord::Schema[7.2].define(version: 2024_10_10_051333) do
   create_table "users", force: :cascade do |t|
-    t.string "identification"
-    t.string "password"
+    t.string "identification", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identification"], name: "index_users_on_identification", unique: true
   end
 end
