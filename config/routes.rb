@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  get :login, to: 'sessions#new'
-  post :login, to: 'sessions#create'
-  get :logout, to: 'sessions#destroy'
-  get :pictures, to: 'pictures#index'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
+  get 'pictures', to: 'pictures#index'
+  get 'pictures/new', to: 'pictures#new'
+  post 'pictures', to: 'pictures#create'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

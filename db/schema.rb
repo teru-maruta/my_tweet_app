@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_10_051333) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_12_100659) do
+  create_table "pictures", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.string "image_file_path", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_pictures_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_pictures_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "identification", null: false
     t.string "password", null: false
@@ -18,4 +28,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_10_051333) do
     t.datetime "updated_at", null: false
     t.index ["identification"], name: "index_users_on_identification", unique: true
   end
+
+  add_foreign_key "pictures", "users"
 end

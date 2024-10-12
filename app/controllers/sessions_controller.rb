@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to :pictures and return if logged_in?
+    redirect_to pictures_path and return if logged_in?
   end
 
   def create
@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
     (flash.now[:notice] = notice.join) and return if notice.present?
 
     session[:user_id] = user.id
-    redirect_to :pictures and return
+    redirect_to pictures_path and return
   end
 
   def destroy
     session.delete :user_id
-    redirect_to :login and return
+    redirect_to login_path and return
   end
 end
