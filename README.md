@@ -29,7 +29,7 @@ Things you may want to cover:
 
 1. install Ubuntu 24.04.1 LTS
 1. https://gorails.com/setup/ubuntu/24.04
-   1. sudo apt install -y git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev
+   1. `sudo apt install -y git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev`
    1. install asdf
       ```sh
       cd
@@ -40,15 +40,15 @@ Things you may want to cover:
       echo 'export EDITOR="code --wait"' >> ~/.bashrc
       exec $SHELL
       ```
-   1. asdf plugin add ruby
-   1. asdf install ruby 3.3.5
-   1. gem install rails -v 7.2.1
-   1. rails _7.2.1_ new my_tweet_app
-   1. bundle install && bundle exec rails s -b 0.0.0.0
+   1. `asdf plugin add ruby`
+   1. `asdf install ruby 3.3.5`
+   1. `gem install rails -v 7.2.1`
+   1. `rails _7.2.1_ new my_tweet_app`
+   1. `bundle install && bundle exec rails s -b 0.0.0.0`
    1. 所要時間 2 時間
 
 ## application
 
-1. bundle exec rails generate model User identification:string password:string
-1. bundle exec rails db:migrate
-1. bundle exec rails db:seed
+1. `bundle exec rails db:migrate`
+1. `bundle exec rails db:seed`
+1. `bundle install && bundle exec rails s -b 0.0.0.0`
