@@ -8,14 +8,14 @@
 <h1>写真アップロード</h1>
 
 <div>
-<%= form_with model: @picture do |form| %>
+<%= form_with model: @picture, url: pictures_path, html: { multipart: true } do |form| %>
   <div>
   <%= form.label :title, 'タイトル' %>
   <%= form.text_field :title %>
   </div>
   <div>
   <%= form.label :file, '画像ファイル' %>
-  <%= form.file_field :file %>
+  <%= form.file_field :file, accept: 'image/jpeg,image/gif,image/png' %>
   </div>
   <div>
   <%= form.submit 'アップロード' %>

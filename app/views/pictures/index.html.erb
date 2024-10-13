@@ -12,7 +12,8 @@
 <div>
 <% @pictures.each do |picture| %>
   <div>
-  <%= picture.created_at %>
+  <%= picture.title %>
   </div>
+  <%= image_tag "/uploads/#{picture.file_name}" %>
 <% end %>
 </div>

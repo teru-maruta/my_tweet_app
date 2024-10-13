@@ -13,10 +13,11 @@
 ActiveRecord::Schema[7.2].define(version: 2024_10_12_100659) do
   create_table "pictures", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "title"
-    t.string "image_file_path", null: false
+    t.string "title", null: false
+    t.string "file_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["file_name"], name: "index_pictures_on_file_name", unique: true
     t.index ["user_id", "created_at"], name: "index_pictures_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
