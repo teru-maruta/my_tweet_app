@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'pictures', to: 'pictures#index'
+  get 'pictures/authorization', to: 'pictures#authorization'
+  get 'oauth/callback', to: 'sessions#callback'
   get 'pictures/new', to: 'pictures#new'
   post 'pictures', to: 'pictures#create'
 

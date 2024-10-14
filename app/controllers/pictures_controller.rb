@@ -21,4 +21,15 @@ class PicturesController < ApplicationController
     redirect_to login_path and return unless logged_in?
     @pictures = current_user.pictures
   end
+
+  def authorization
+    endpoint = Rails.application.credentials[:authorization][:authorize_endpoint]
+    query_params = {
+      response_type: 'code',
+      client_id: Rails.application.credentials[:authorization][:client_id],
+      redirect_uri: 'http://localhost:3000/oauth/callback',
+      scope: Rails.application.credentials[:authorization][:scope],
+    }
+    redirect_to("#{endpoint}?#{query_params.to_query}", allow_other_host: true) and return
+  end
 end
