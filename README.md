@@ -48,19 +48,25 @@ Things you may want to cover:
 
 ## 動かし方
 
-1. Credentialsを参照できるようにするために、 `config/master.key` を配置する  
+1. Credentials を参照できるようにするために、 `config/master.key` を配置する  
    キーは別途共有
-    ```sh
-    # my_tweet_app 以下で実行
-    touch config/master.key
-    chmod 600 config/master.key
-    echo "[キー]" > config/master.key
-    ```
+   ```sh
+   # my_tweet_app 以下で実行
+   touch config/master.key
+   chmod 600 config/master.key
+   echo "[キー]" > config/master.key
+   ```
 1. `bundle install`
 1. `bundle exec rails db:migrate`
 1. `bundle exec rails db:seed`
 1. `bundle exec rails s -b 0.0.0.0`
-1. ブラウザで `http://localhost:3000` にアクセス
-    - ユーザーID/パスワードは [seed](db/seeds.rb) で定義
-        - hoge/hogehoge
-        - fuga/fugafuga
+1. ブラウザで [http://localhost:3000](http://localhost:3000) にアクセス
+   - ユーザー ID/パスワードは [seed](db/seeds.rb) で定義
+     - hoge/hogehoge
+     - fuga/fugafuga
+
+## 残課題
+
+1. エラー表示
+   1. login
+   1. file upload
