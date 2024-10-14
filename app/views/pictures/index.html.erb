@@ -7,20 +7,32 @@
 
 <h1>写真一覧</h1>
 
-
 <div>
+<% if session[:access_token].present? %>
+MyTweetAppと連携中
+<% else %>
 <%= link_to 'MyTweetAppと連携', pictures_authorization_path %>
+<% end %>
 </div>
 <div>
 <%= link_to '写真を新規にアップロード', pictures_new_path %>
 </div>
 <div>
-<% @pictures.each do |picture| %>
-  <div>
-  <%= picture.title %>
-  </div>
-  <div>
-  <%= image_tag "/uploads/#{picture.file_name}" %>
-  </div>
-<% end %>
+  <%= form_with url: pictires_tweet_path do |form|  %>
+    <% @pictures.each do |picture| %>
+      <div>
+        <div>
+        <%= picture.title %>
+        </div>
+        <div>
+        <%= image_tag "/uploads/#{picture.file_name}" %>
+        </div>
+        <div>
+        <% if session[:access_token].present? %>
+        <%= form.button 'ツイートする', { name: 'picture', value: picture.id } %>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

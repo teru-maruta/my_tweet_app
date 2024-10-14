@@ -27,12 +27,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :user_id
+    reset_session
     redirect_to login_path and return
   end
 
   def callback
-    request_params = {
+    parameters = {
       code: params[:code],
       grant_type: 'authorization_code',
       redirect_uri: 'http://localhost:3000/oauth/callback',
@@ -40,10 +40,11 @@ class SessionsController < ApplicationController
       client_secret: Rails.application.credentials[:authorization][:client_secret],
     }
     uri = URI.parse(Rails.application.credentials[:authorization][:token_endpoint])
-    response = Net::HTTP.post_form(uri, request_params)
+    response = Net::HTTP.post_form(uri, parameters)
 
-    access_token = JSON.parse(response.body)[:access_token]
-    # puts JSON.parse(response.body) # debug
+    access_token = JSON.parse(response.body)['access_token']
+    # puts response.code # debug
+    # puts response.body # debug
     session[:access_token] = access_token
     redirect_to pictures_path and return
   end

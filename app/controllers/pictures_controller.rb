@@ -1,3 +1,6 @@
+require 'uri'
+require 'net/http'
+
 class PicturesController < ApplicationController
   def new
     redirect_to login_path and return unless logged_in?
@@ -31,5 +34,22 @@ class PicturesController < ApplicationController
       scope: Rails.application.credentials[:authorization][:scope],
     }
     redirect_to("#{endpoint}?#{query_params.to_query}", allow_other_host: true) and return
+  end
+
+  def tweet
+    picture = current_user.pictures.find(params[:picture])
+    parameters = {
+      text: picture.title,
+      url: "http://localhost:3000/uploads/#{picture.file_name}"
+    }
+    headers = {
+      'Content-Type': 'application/json',
+      Authorization: "Bearer #{session[:access_token]}",
+    }
+    uri = URI.parse(Rails.application.credentials[:authorization][:tweet_endpoint])
+    response = Net::HTTP.post(uri, parameters.to_json, headers)
+    # puts response.code # debug success: 201
+    # puts response.body # debug
+    redirect_to pictures_path and return
   end
 end

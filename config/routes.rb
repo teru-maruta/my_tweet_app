@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'oauth/callback', to: 'sessions#callback'
   get 'pictures/new', to: 'pictures#new'
   post 'pictures', to: 'pictures#create'
+  post 'pictires/tweet', to: 'pictures#tweet'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
