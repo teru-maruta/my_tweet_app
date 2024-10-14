@@ -1,0 +1,27 @@
+<div>
+<%= current_user.identification %>
+</div>
+<div>
+<%= link_to "ログアウト", logout_path %>
+</div>
+
+<h1>写真アップロード</h1>
+
+<div>
+<%= form_with url: pictures_path, html: { multipart: true } do |form| %>
+  <div>
+  <%= form.label :title, "タイトル" %>
+  <%= form.text_field :title %>
+  </div>
+  <div>
+  <%= form.label :file, "画像ファイル" %>
+  <%= form.file_field :file, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
+  </div>
+  <div>
+  <%= form.submit "アップロード" %>
+  </div>
+<% end %>
+</div>
+<div>
+<%= link_to "キャンセル", pictures_path %>
+</div>
