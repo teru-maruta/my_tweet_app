@@ -45,10 +45,22 @@ Things you may want to cover:
    1. `gem install rails -v 7.2.1`
    1. `rails _7.2.1_ new my_tweet_app`
    1. `bundle install && bundle exec rails s -b 0.0.0.0`
-   1. 所要時間 2 時間
 
-## application
+## 動かし方
 
+1. Credentialsを参照できるようにするために、 `config/master.key` を配置する  
+   キーは別途共有
+    ```sh
+    # my_tweet_app 以下で実行
+    touch config/master.key
+    chmod 600 config/master.key
+    echo "[キー]" > config/master.key
+    ```
+1. `bundle install`
 1. `bundle exec rails db:migrate`
 1. `bundle exec rails db:seed`
-1. `bundle install && bundle exec rails s -b 0.0.0.0`
+1. `bundle exec rails s -b 0.0.0.0`
+1. ブラウザで `http://localhost:3000` にアクセス
+    - ユーザーID/パスワードは [seed](db/seeds.rb) で定義
+        - hoge/hogehoge
+        - fuga/fugafuga
