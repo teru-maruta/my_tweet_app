@@ -6,7 +6,7 @@ class CreatePictures < ActiveRecord::Migration[7.2]
       t.string :file_name, null: false, index: { unique: true }
 
       t.timestamps
-      t.index [:user_id, :created_at]
+      t.index [ :user_id, :created_at ]
     end
   end
 end
