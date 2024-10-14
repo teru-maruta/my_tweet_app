@@ -1,5 +1,5 @@
-require 'uri'
-require 'net/http'
+require "uri"
+require "net/http"
 
 class PicturesController < ApplicationController
   def new
@@ -28,10 +28,10 @@ class PicturesController < ApplicationController
   def authorization
     endpoint = Rails.application.credentials[:authorization][:authorize_endpoint]
     query_params = {
-      response_type: 'code',
+      response_type: "code",
       client_id: Rails.application.credentials[:authorization][:client_id],
-      redirect_uri: 'http://localhost:3000/oauth/callback',
-      scope: Rails.application.credentials[:authorization][:scope],
+      redirect_uri: "http://localhost:3000/oauth/callback",
+      scope: Rails.application.credentials[:authorization][:scope]
     }
     redirect_to("#{endpoint}?#{query_params.to_query}", allow_other_host: true) and return
   end
@@ -43,8 +43,8 @@ class PicturesController < ApplicationController
       url: "http://localhost:3000/uploads/#{picture.file_name}"
     }
     headers = {
-      'Content-Type': 'application/json',
-      Authorization: "Bearer #{session[:access_token]}",
+      "Content-Type": "application/json",
+      Authorization: "Bearer #{session[:access_token]}"
     }
     uri = URI.parse(Rails.application.credentials[:authorization][:tweet_endpoint])
     response = Net::HTTP.post(uri, parameters.to_json, headers)

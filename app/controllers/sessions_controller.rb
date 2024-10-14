@@ -1,5 +1,5 @@
-require 'uri'
-require 'net/http'
+require "uri"
+require "net/http"
 
 class SessionsController < ApplicationController
   def new
@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
 
     notice = []
     identification = params[:identification]
-    notice << 'ユーザーIDが未入力' if identification.blank?
+    notice << "ユーザーIDが未入力" if identification.blank?
     password = params[:password]
-    notice << 'パスワードが未入力' if password.blank?
+    notice << "パスワードが未入力" if password.blank?
 
     if identification.present? && password.present?
       user = User.find_by(identification: params[:identification], password: params[:password])
-      notice << 'ユーザーIDとパスワードが一致するユーザーが存在しない' if user.blank?
+      notice << "ユーザーIDとパスワードが一致するユーザーが存在しない" if user.blank?
     end
 
     (flash.now[:notice] = notice.join) and return if notice.present?
@@ -34,15 +34,15 @@ class SessionsController < ApplicationController
   def callback
     parameters = {
       code: params[:code],
-      grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000/oauth/callback',
+      grant_type: "authorization_code",
+      redirect_uri: "http://localhost:3000/oauth/callback",
       client_id: Rails.application.credentials[:authorization][:client_id],
-      client_secret: Rails.application.credentials[:authorization][:client_secret],
+      client_secret: Rails.application.credentials[:authorization][:client_secret]
     }
     uri = URI.parse(Rails.application.credentials[:authorization][:token_endpoint])
     response = Net::HTTP.post_form(uri, parameters)
 
-    access_token = JSON.parse(response.body)['access_token']
+    access_token = JSON.parse(response.body)["access_token"]
     # puts response.code # debug
     # puts response.body # debug
     session[:access_token] = access_token
